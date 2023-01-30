@@ -9,6 +9,5 @@ export default function Header(){
             <FirstNav />
             <SecondNav />
         </React.Fragment>
-        
     )
 }
