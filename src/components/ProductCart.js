@@ -4,6 +4,12 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import Divider from '@mui/material/Divider';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import IconButton from '@mui/material/IconButton';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import NativeSelect from '@mui/material/NativeSelect';
+import image from '../assets/img/Example-image.png'
 
 const Img = styled('img')({
     margin: 'auto',
@@ -12,7 +18,10 @@ const Img = styled('img')({
     maxHeight: '100%',
 });
 
-export default function ProductCart(){
+export default function ProductCart({product, removeItem, updateQuantity}){
+
+
+    
 
 
     return(
@@ -31,31 +40,57 @@ export default function ProductCart(){
                         <Grid container spacing={2}>
                             <Grid item>
                             <ButtonBase sx={{ width: 128, height: 128 }}>
-                                <Img alt="complex" src="/static/images/grid/complex.jpg" />
+                                <Img alt="complex" src={image} />
                             </ButtonBase>
                             </Grid>
                             <Grid item xs={12} sm container>
                                 <Grid item xs container direction="column" spacing={2}>
                                     <Grid item xs>
-                                        <Typography gutterBottom variant="subtitle1" component="div">
-                                            Standard license
-                                        </Typography>
-                                        <Typography variant="body2" gutterBottom>
-                                            Full resolution 1920x1080 • JPEG
+                                        <Typography fontWeight={"bold"} gutterBottom variant="h5" component="div">
+                                            {product.title}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
-                                            ID: 1030114
+                                            ID: {product.id}
                                         </Typography>
                                     </Grid>
                                     <Grid item>
-                                        <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                                            Remove
-                                        </Typography>
+                                        <FormControl sx={{minWidth: "100px"}}>
+                                            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                                            Quantity
+                                            </InputLabel>
+                                            <NativeSelect
+                                            inputProps={{
+                                                defaultValue: product.quantity,
+                                                name: 'quantity',
+                                                id: 'uncontrolled-native',
+                                                onChange: (e) => updateQuantity(e,product.id)
+                                            }}
+                                            >
+                                            <option value={1}>1</option>
+                                            <option value={2}>2</option>
+                                            <option value={3}>3</option>
+                                            <option value={4}>4</option>
+                                            <option value={5}>5</option>
+                                            </NativeSelect>
+                                        </FormControl>
+                                    </Grid>
+                                    <Grid item>
+                                        <IconButton
+                                        color="inherit"
+                                        gap={2}
+                                        onClick={(e) => removeItem(e,product.id)}
+                                        >
+                                            <DeleteOutlinedIcon />
+                                            <Typography variant="body2">Remove</Typography>
+                                        </IconButton>
                                     </Grid>
                                 </Grid>
-                                <Grid item>
-                                    <Typography variant="subtitle1" component="div">
-                                    $19.00
+                                <Grid sx={{textAlign: 'right'}} item>
+                                    <Typography fontWeight={"bold"} variant="h5" component="div">
+                                    $ {product.price}
+                                    </Typography>
+                                    <Typography fontWeight={"bold"} variant="h5" component="div">
+                                    Total: $ {product.total}
                                     </Typography>
                                 </Grid>
                             </Grid>

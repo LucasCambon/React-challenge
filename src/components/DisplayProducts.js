@@ -5,9 +5,29 @@ import ProductCart from './ProductCart';
 
   
 
-export default function DisplayProducts(){
+export default function DisplayProducts({products, setProducts, setTotal}){
 
-    const products = [1,2,3]
+    const removeItem = (e,itemId) => {
+        let filteredProducts = products.filter(row => row.id !== itemId)
+        let updatedTotal = updateTotal(filteredProducts)
+        setProducts(filteredProducts)
+        setTotal(updatedTotal)
+    }
+
+    const updateQuantity = (e, itemId) => {
+        let productEdited = products.find(row => row.id === itemId)
+        console.log(productEdited)
+        productEdited.quantity = parseInt(e.target.value)
+        productEdited.total = productEdited.quantity * productEdited.price
+        let updatedTotal = updateTotal(products)
+        setProducts(products)
+        setTotal(updatedTotal)
+    }
+
+    const updateTotal = (updatedProducts) => {
+        let updatedTotal = updatedProducts.reduce((acum, currentValue) =>  acum + currentValue.total, 0)
+        return updatedTotal
+    }
 
     return(
         <Box sx={{ flexGrow: 1, marginTop: "50px" }}>
@@ -18,7 +38,7 @@ export default function DisplayProducts(){
             {
                 products.map((row,i) => {
                     return (
-                        <ProductCart key={row+i} />
+                        <ProductCart product={{...row}} removeItem={removeItem} updateQuantity={updateQuantity} key={row+i} />
                     )
                 })
             }

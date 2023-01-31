@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
 
-export default function OrderSummary(){
+export default function OrderSummary({total, numberItems}){
 
 
     return(
@@ -23,7 +23,7 @@ export default function OrderSummary(){
                         </Grid>
                         <Grid xs={4}>
                             <Typography textAlign="right" color='#979da3' variant="subtitle1" gutterBottom>
-                                3
+                                {numberItems}
                             </Typography>
                         </Grid>
                         <Grid xs={12}>
@@ -38,7 +38,7 @@ export default function OrderSummary(){
                         </Grid>
                         <Grid xs={10}>
                             <Typography fontWeight="bold" textAlign="right" color="#1a2634" variant="h6" gutterBottom>
-                                $ 3,560.00
+                                $ {total}
                             </Typography>
                         </Grid>
                     </Grid>
