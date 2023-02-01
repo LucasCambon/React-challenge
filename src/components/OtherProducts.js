@@ -6,6 +6,7 @@ import ProductLikeCard from './ProductLikeCard';
 import { useEffect, useState } from 'react';
 
 
+
 export default function OtherProducts(){
 
     const [products, setProducts] = useState([])
