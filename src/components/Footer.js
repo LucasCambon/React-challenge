@@ -10,9 +10,9 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import FormControl from '@mui/material/FormControl';
-import NativeSelect from '@mui/material/NativeSelect';
 import FooterLink from './FooterLink';
+import DinamicSelect from './DinamicSelect';
+
 export default function Footer(){
 
     const sections = [
@@ -27,6 +27,72 @@ export default function Footer(){
         {
             title: "Information",
             links: ["Contact us", "Live chat", "Privacy", "Terms of use"]
+        }
+    ]
+
+    const regions = [
+        {
+            value: "United-States",
+            text: "United States"
+        },
+        {
+            value: "LATAM",
+            text: "LATAM"
+        },
+        {
+            value: "UK",
+            text: "United Kingdom"
+        },
+        {
+            value: "Europe",
+            text: "Europe"
+        },
+        {
+            value: "Asia",
+            text: "Asia"
+        },
+        {
+            value: "Oceania",
+            text: "Oceania"
+        },
+        {
+            value: "Africa",
+            text: "Africa"
+        }
+    ]
+
+    const languagues = [
+        {
+            value: "en",
+            text: "English"
+        },
+        {
+            value: "es",
+            text: "Spanish"
+        },
+        {
+            value: "de",
+            text: "German"
+        },
+        {
+            value: "fr",
+            text: "French"
+        },
+        {
+            value: "zh",
+            text: "Chinese"
+        },
+        {
+            value: "it",
+            text: "Italian"
+        },
+        {
+            value: "jp",
+            text: "Japanese"
+        },
+        {
+            value: "ar",
+            text: "Arabian"
         }
     ]
 
@@ -111,23 +177,7 @@ export default function Footer(){
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <FormControl sx={{minWidth: "100px"}}>
-                            <NativeSelect
-                            inputProps={{
-                                defaultValue: "UnitedStates",
-                                name: 'quantity',
-                                id: 'uncontrolled-native',
-                            }}
-                            >
-                            <option value={"United States"}>United States</option>
-                            <option value={"LATAM"}>LATAM</option>
-                            <option value={"UK"}>United Kingdom</option>
-                            <option value={"Europe"}>Europe</option>
-                            <option value={"Asia"}>Asia</option>
-                            <option value={"Oceania"}>Oceania</option>
-                            <option value={"Africa"}>Africa</option>
-                            </NativeSelect>
-                        </FormControl>
+                        <DinamicSelect defaultValue={"United States"} information={regions} name={"regions"}/>
                     </Grid>
                     <Grid marginRight={"5px"} item>
                         <Typography fontWeight={"bold"} variant="subtitle2" color="text.secondary">
@@ -135,22 +185,7 @@ export default function Footer(){
                         </Typography>
                     </Grid>
                     <Grid item>
-                        <FormControl sx={{minWidth: "100px"}}>
-                            <NativeSelect
-                            inputProps={{
-                                defaultValue:"UnitedStates",
-                                name: 'quantity',
-                                id: 'uncontrolled-native',
-                            }}
-                            >
-                            <option value={"en"}>English</option>
-                            <option value={"es"}>Spanish</option>
-                            <option value={"fr"}>French</option>
-                            <option value={"zh"}>Chinese</option>
-                            <option value={"it"}>Italian</option>
-                            <option value={"jp"}>Japanese</option>
-                            </NativeSelect>
-                        </FormControl>
+                        <DinamicSelect defaultValue={"en"} information={languagues} name={"languages"}/>
                     </Grid>
                 </Grid>
             </Grid>
