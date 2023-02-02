@@ -38,7 +38,7 @@ export default function DisplayProducts({products, setProducts, setTotal}){
             {
                 products.map((row,i) => {
                     return (
-                        <ProductCart product={{...row}} removeItem={removeItem} updateQuantity={updateQuantity} key={row+i} />
+                        <ProductCart product={{...row}} removeItem={removeItem} updateQuantity={updateQuantity} key={row.id} />
                     )
                 })
             }
